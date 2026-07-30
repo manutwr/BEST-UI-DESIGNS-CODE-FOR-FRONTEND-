@@ -1,21 +1,4 @@
-/* ==========================================================================
-   CSS TABLE OF CONTENTS
-   1. Root Variables & Theme Setup
-   2. Base Styles & Typography
-   3. Custom Cursor & Scrollbar
-   4. Preloader & Glassmorphism Utilities
-   5. Navigation Bar & Progress Bar
-   6. Hero Section & Animated SVG
-   7. About Section & Stat Cards
-   8. Skills Section & Badges
-   9. Projects Grid & Hover Effects
-   10. Experience Timeline
-   11. Coding Profiles & Behance Showcase
-   12. Contact Form & Footer
-   13. Responsive Media Queries
-   ========================================================================== */
 
-/* 1. ROOT VARIABLES */
 :root {
   --bg-dark: #050816;
   --bg-card: rgba(11, 18, 32, 0.65);
