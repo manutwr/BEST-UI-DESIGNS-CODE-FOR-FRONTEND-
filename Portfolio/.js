@@ -1,8 +1,3 @@
-/**
- * Saksham Tiwari Portfolio - Master Script
- * Handles custom cursors, preloader, typing effect, scroll animations,
- * nav state, stats counter, and form submission.
- */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -273,24 +268,24 @@ const cursorOutlineEl = document.getElementById('cursor-outline');
 magneticBtns.forEach(btn => {
   btn.addEventListener('mousemove', (e) => {
     const rect = btn.getBoundingClientRect();
-    // Button ke center se mouse ka distance calculate karein
+    
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
-    // Button ko cursor ki taraf 30% pull karein (Magnetic Pull)
+
     btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
 
-    // Cursor ko ek sleek glowing shape bana dein
+   
     if (cursorOutlineEl) {
       cursorOutlineEl.classList.add('hover-button');
     }
   });
 
   btn.addEventListener('mouseleave', () => {
-    // Mouse hat'te hi button waapas apni jagah aa jayega
+   
     btn.style.transform = 'translate(0px, 0px)';
 
-    // Cursor ka shape normal ho jayega
+    
     if (cursorOutlineEl) {
       cursorOutlineEl.classList.remove('hover-button');
     }
