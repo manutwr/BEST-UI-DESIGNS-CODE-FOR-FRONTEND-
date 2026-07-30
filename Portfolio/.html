@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saksham Tiwari | Frontend Developer & UI/UX Designer</title>
+  <meta name="description" content="Portfolio of Saksham Tiwari - CSE Student, Frontend Developer & UI/UX Designer crafting high-performance, futuristic web experiences.">
+  <meta name="keywords" content="Saksham Tiwari, Frontend Developer, UI UX Designer, Web Developer, CSE Student, Gemini API, JavaScript, C++">
+  <meta name="author" content="Saksham Tiwari">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Saksham Tiwari | Portfolio">
+  <meta property="og:description" content="Building modern web experiences. Designing beautiful interfaces. Learning AI & Full Stack Development.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Google Fonts: Inter & Sora -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Custom Glow Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Loading Splash Screen -->
+  <div class="preloader" id="preloader">
+    <div class="loader-content">
+      <div class="loader-logo">ST<span>.</span></div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+      <p class="loader-text">Loading Experience...</p>
+    </div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Background Ambient Glow Blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">Saksham<span>Tiwari</span></a>
+      
+      <nav class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-item active">Home</a>
+        <a href="#about" class="nav-item">About</a>
+        <a href="#skills" class="nav-item">Skills</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#profiles" class="nav-item">Profiles</a>
+        <a href="#behance" class="nav-item">Behance</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm ripple">Hire Me</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content reveal-left">
+          <div class="status-badge">
+            <span class="pulsing-dot"></span> Available for Projects & Internships
+          </div>
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Saksham Tiwari</span>
+          </h1>
+          <h2 class="hero-subtitle">
+            <span class="typing-text" id="typingText"></span><span class="cursor-blink">|</span>
+          </h2>
+          <p class="hero-description">
+            Building modern web experiences. Designing beautiful interfaces. Learning AI & Full Stack Development with a focus on high performance and scalability.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary ripple">
+              <span>View Projects</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-secondary ripple">
+              <span>Contact Me</span> <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <span class="social-label">Connect:</span>
+            <a href="https://github.com/manutwr" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/saksham-tiwari-3b4000403" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://codolio.com/profile/manutwr" target="_blank" aria-label="Codolio"><i class="fa-solid fa-code"></i></a>
+            <a href="mailto:sakshamtiwari.engg@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <!-- Animated SVG Developer Avatar -->
+        <div class="hero-avatar-wrapper reveal-right">
+          <div class="avatar-card glass-card">
+            <div class="avatar-glow"></div>
+            <svg class="avatar-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="250" cy="250" r="200" fill="url(#avatar-grad-bg)" opacity="0.15"/>
+              <circle cx="250" cy="250" r="180" stroke="url(#avatar-border)" stroke-width="2" stroke-dasharray="10 10"/>
+              <!-- Abstract Futuristic Avatar Shapes -->
+              <path d="M170 380C170 310 210 270 250 270C290 270 330 310 330 380" stroke="url(#accent-grad)" stroke-width="8" stroke-linecap="round"/>
+              <circle cx="250" cy="200" r="55" fill="url(#avatar-grad)" stroke="#3B82F6" stroke-width="4"/>
+              <rect x="210" y="185" width="80" height="20" rx="10" fill="#050816"/>
+              <circle cx="230" cy="195" r="5" fill="#3B82F6"/>
+              <circle cx="270" cy="195" r="5" fill="#8B5CF6"/>
+              <!-- Code Overlay Graphics -->
+              <g class="floating-code">
+                <rect x="70" y="120" width="120" height="60" rx="12" fill="rgba(15,23,42,0.8)" stroke="rgba(59,130,246,0.3)"/>
+                <text x="85" y="155" fill="#3B82F6" font-family="monospace" font-size="14">&lt;code&gt;</text>
+              </g>
+              <g class="floating-design">
+                <rect x="310" y="300" width="120" height="60" rx="12" fill="rgba(15,23,42,0.8)" stroke="rgba(139,92,246,0.3)"/>
+                <text x="325" y="335" fill="#8B5CF6" font-family="monospace" font-size="14">UI/UX ⚡</text>
+              </g>
+              <defs>
+                <radialGradient id="avatar-grad-bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(250 250) rotate(90) scale(200)">
+                  <stop stop-color="#3B82F6"/>
+                  <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="avatar-grad" x1="195" y1="145" x2="305" y2="255" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0B1220"/>
+                  <stop offset="1" stop-color="#1E293B"/>
+                </linearGradient>
+                <linearGradient id="accent-grad" x1="170" y1="270" x2="330" y2="380" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3B82F6"/>
+                  <stop offset="1" stop-color="#8B5CF6"/>
+                </linearGradient>
+                <linearGradient id="avatar-border" x1="70" y1="70" x2="430" y2="430" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3B82F6"/>
+                  <stop offset="0.5" stop-color="#8B5CF6"/>
+                  <stop offset="1" stop-color="#3B82F6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Get To Know Me</span>
+          <h2 class="section-title">About <span class="gradient-text">Saksham</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glass-card reveal-left">
+            <div class="about-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3>Who I Am</h3>
+            <p>
+              I am a passionate <strong>Computer Science Engineering (CSE) Student</strong>, Frontend Developer, and UI/UX Designer based in India. I specialize in building sleek, high-performing web applications with intuitive design systems.
+            </p>
+          </div>
+
+          <div class="about-card glass-card reveal-up">
+            <div class="about-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>My Journey & Focus</h3>
+            <p>
+              Beyond crafting aesthetic interfaces, I am deeply engrossed in <strong>solving Data Structures & Algorithms (DSA)</strong> problems, mastering full-stack web development, and exploring modern AI integrations using the <strong>Gemini API</strong>.
+            </p>
+          </div>
+
+          <div class="about-card glass-card reveal-right">
+            <div class="about-icon"><i class="fa-solid fa-rocket"></i></div>
+            <h3>Mindset & Goals</h3>
+            <p>
+              As an open-source enthusiast and continuous learner, I strive to stay at the bleeding edge of tech—aiming to engineer modern products that solve real-world problems with elegance.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-stats-grid reveal-up">
+          <div class="stat-card glass-card">
+            <h4 class="stat-number gradient-text" data-target="100">0+</h4>
+            <p class="stat-label">DSA Problems Solved</p>
+          </div>
+          <div class="stat-card glass-card">
+            <h4 class="stat-number gradient-text" data-target="15">0+</h4>
+            <p class="stat-label">Projects Built</p>
+          </div>
+          <div class="stat-card glass-card">
+            <h4 class="stat-number gradient-text" data-target="100">0%</h4>
+            <p class="stat-label">Commitment To Quality</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SKILLS SECTION -->
+    <section id="skills" class="section bg-alt">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Technical Proficiency</span>
+          <h2 class="section-title">My <span class="gradient-text">Skills</span> & Expertise</h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Programming -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-code category-icon"></i>
+              <h3>Programming</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge"><i class="fa-solid fa-terminal"></i> C++</span>
+              <span class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</span>
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-globe category-icon"></i>
+              <h3>Web Development</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge"><i class="fa-brands fa-html5"></i> HTML5</span>
+              <span class="skill-badge"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+              <span class="skill-badge"><i class="fa-solid fa-mobile-screen"></i> Responsive Design</span>
+              <span class="skill-badge"><i class="fa-solid fa-sitemap"></i> DOM Manipulation</span>
+              <span class="skill-badge"><i class="fa-solid fa-plug"></i> REST APIs</span>
+            </div>
+          </div>
+
+          <!-- DSA -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-brain category-icon"></i>
+              <h3>Data Structures & Algo</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge">Arrays</span>
+              <span class="skill-badge">Strings</span>
+              <span class="skill-badge">Searching</span>
+              <span class="skill-badge">Sorting</span>
+              <span class="skill-badge">Two Pointers</span>
+              <span class="skill-badge">C++ STL</span>
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-wrench category-icon"></i>
+              <h3>Tools & Software</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge"><i class="fa-brands fa-git-alt"></i> Git</span>
+              <span class="skill-badge"><i class="fa-brands fa-github"></i> GitHub</span>
+              <span class="skill-badge"><i class="fa-solid fa-code"></i> VS Code</span>
+              <span class="skill-badge"><i class="fa-brands fa-figma"></i> Figma</span>
+              <span class="skill-badge"><i class="fa-solid fa-palette"></i> Canva</span>
+              <span class="skill-badge"><i class="fa-solid fa-cube"></i> Spline 3D</span>
+            </div>
+          </div>
+
+          <!-- AI & Emerging Tech -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-robot category-icon"></i>
+              <h3>AI & Intelligence</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Gemini API</span>
+              <span class="skill-badge"><i class="fa-solid fa-microchip"></i> AI Tools & Prompting</span>
+            </div>
+          </div>
+
+          <!-- UI/UX Design -->
+          <div class="skill-category glass-card reveal-up">
+            <div class="category-header">
+              <i class="fa-solid fa-pen-nib category-icon"></i>
+              <h3>Design & Experience</h3>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-badge">UI Design</span>
+              <span class="skill-badge">UX Design</span>
+              <span class="skill-badge">Wireframing</span>
+              <span class="skill-badge">Prototyping</span>
+              <span class="skill-badge">Design Systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS SECTION -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Featured Work</span>
+          <h2 class="section-title">Highlighted <span class="gradient-text">Projects</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+
+        <div class="projects-grid">
+          <!-- Project 1: Gemini AI Chatbot -->
+          <div class="project-card glass-card reveal-up">
+            <div class="project-image-container">
+              <div class="project-image-placeholder">
+                <i class="fa-solid fa-robot project-placeholder-icon"></i>
+                <div class="project-preview-overlay">
+                  <span class="tag">AI Powered</span>
+                  <span class="tag">Vanilla JS</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-header-meta">
+                <span class="project-category">AI / Web App</span>
+                <span class="project-status">Completed</span>
+              </div>
+              <h3 class="project-title">Gemini AI Chatbot</h3>
+              <p class="project-description">
+                A sleek, modern AI chatbot powered by Google's Gemini API. Features glassmorphism UI, real-time streaming response simulation, code highlighting, and responsive dark theme layout.
+              </p>
+              <div class="project-tech">
+                <span>JavaScript</span>
+                <span>Gemini API</span>
+                <span>CSS3 Glass</span>
+                <span>HTML5</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/manutwr" target="_blank" class="btn btn-secondary btn-sm ripple"><i class="fa-brands fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+   
+   
+  </a>
+</div>
+
+
+          <!-- Project 2: QR Code Generator -->
+          <div class="project-card glass-card reveal-up">
+            <div class="project-image-container">
+              <div class="project-image-placeholder alt-bg">
+                <i class="fa-solid fa-qrcode project-placeholder-icon"></i>
+                <div class="project-preview-overlay">
+                  <span class="tag">Utility Tool</span>
+                  <span class="tag">Clean UI</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-header-meta">
+                <span class="project-category">Web Utility</span>
+                <span class="project-status">Completed</span>
+              </div>
+              <h3 class="project-title">QR Code Generator</h3>
+              <p class="project-description">
+                An instant QR code generation tool built with clean UI, dynamic styling customizer, downloadable outputs, and fast browser execution with zero latency.
+              </p>
+              <div class="project-tech">
+                <span>HTML5</span>
+                <span>CSS Grid</span>
+                <span>Vanilla JS</span>
+                <span>QR API</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/manutwr" target="_blank" class="btn btn-secondary btn-sm ripple"><i class="fa-brands fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXPERIENCE TIMELINE SECTION -->
+    <section id="experience" class="section bg-alt">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">My Path & Milestones</span>
+          <h2 class="section-title">Education & <span class="gradient-text">Experience</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="timeline">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2023 - Present</span>
+              <h3 class="timeline-title">Computer Science & Engineering Student</h3>
+              <h4 class="timeline-subtitle">Undergraduate Degree</h4>
+              <p>
+                Focusing on core engineering fundamentals: Data Structures, Algorithms, Object-Oriented Programming (C++), Operating Systems, and Software Architecture.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal-right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2023 - Present</span>
+              <h3 class="timeline-title">Independent Frontend & UI/UX Developer</h3>
+              <h4 class="timeline-subtitle">Self-Driven Projects & Open Source</h4>
+              <p>
+                Designing user-centric visual interface systems in Figma and translating them into robust, clean, responsive code using modern HTML, CSS, and JavaScript.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item reveal-left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content glass-card">
+              <span class="timeline-date">2024 - Present</span>
+              <h3 class="timeline-title">AI & Full Stack Exploration</h3>
+              <h4 class="timeline-subtitle">Emerging Tech & API Integrations</h4>
+              <p>
+                Integrating Generative AI models (Gemini API) into interactive web products, mastering asynchronous API communication, and building modern dynamic web interfaces.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CODING PROFILES SECTION -->
+    <section id="profiles" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Where I Code & Share</span>
+          <h2 class="section-title">Coding & <span class="gradient-text">Developer Profiles</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="profiles-grid">
+          <!-- GitHub Card -->
+          <a href="https://github.com/manutwr" target="_blank" class="profile-card glass-card reveal-up">
+            <div class="profile-icon github-color"><i class="fa-brands fa-github"></i></div>
+            <div class="profile-info">
+              <h3>GitHub</h3>
+              <p>@manutwr</p>
+              <span class="profile-badge">View Repositories <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <!-- LinkedIn Card -->
+          <a href="https://www.linkedin.com/in/saksham-tiwari-3b4000403" target="_blank" class="profile-card glass-card reveal-up">
+            <div class="profile-icon linkedin-color"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div class="profile-info">
+              <h3>LinkedIn</h3>
+              <p>Saksham Tiwari</p>
+              <span class="profile-badge">Connect & Network <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <!-- Codolio Card -->
+          <a href="https://codolio.com/profile/manutwr" target="_blank" class="profile-card glass-card reveal-up">
+            <div class="profile-icon codolio-color"><i class="fa-solid fa-code"></i></div>
+            <div class="profile-info">
+              <h3>Codolio</h3>
+              <p>@manutwr</p>
+              <span class="profile-badge">View Coding Stats <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <!-- Behance Card -->
+          <a href="#behance" class="profile-card glass-card reveal-up">
+            <div class="profile-icon behance-color"><i class="fa-brands fa-behance"></i></div>
+            <div class="profile-info">
+              <h3>Behance</h3>
+              <p>UI/UX Showcase</p>
+              <span class="profile-badge">Explore Designs <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. BEHANCE / DESIGN SHOWCASE SECTION -->
+    <section id="behance" class="section bg-alt">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Visual & Interface Design</span>
+          <h2 class="section-title">Behance <span class="gradient-text">Design Gallery</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="design-grid">
+          <div class="design-card glass-card reveal-up">
+            <div class="design-preview">
+              <i class="fa-brands fa-behance design-bg-icon"></i>
+              <div class="design-overlay">
+                <h4>Dark Minimal Dashboard UI</h4>
+                <p>Figma & Spline Prototype</p>
+              </div>
+            </div>
+            <div class="design-footer">
+              <span>Figma Design System</span>
+              <a href="#" class="btn-text">View Design <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="design-card glass-card reveal-up">
+            <div class="design-preview">
+              <i class="fa-solid fa-mobile-screen-button design-bg-icon"></i>
+              <div class="design-overlay">
+                <h4>AI Mobile Application Concept</h4>
+                <p>iOS Interface & Micro-interactions</p>
+              </div>
+            </div>
+            <div class="design-footer">
+              <span>Mobile UI/UX</span>
+              <a href="#" class="btn-text">View Design <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CONTACT SECTION -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header text-center reveal-up">
+          <span class="section-subtitle">Get In Touch</span>
+          <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="contact-info reveal-left">
+            <div class="contact-card glass-card">
+              <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+              <div>
+                <h4>Direct Email</h4>
+                <a href="mailto:sakshamtiwari.engg@gmail.com">sakshamtiwari.engg@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-card glass-card">
+              <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div>
+                <h4>LinkedIn</h4>
+                <a href="https://www.linkedin.com/in/saksham-tiwari-3b4000403" target="_blank">Connect on LinkedIn</a>
+              </div>
+            </div>
+
+            <div class="contact-card glass-card">
+              <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://github.com/manutwr" target="_blank">@manutwr</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper glass-card reveal-right">
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" required placeholder="john@example.com">
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" required placeholder="Project Inquiry / Job Opportunity">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" required placeholder="Hi Saksham, I loved your portfolio..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block ripple">
+                <span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>
+              </button>
+              <div id="formStatus" class="form-status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 9. FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-logo">Saksham<span>Tiwari</span></div>
+      <p class="footer-text">Building modern web experiences with clean code & futuristic design.</p>
+      
+      <div class="footer-socials">
+        <a href="https://github.com/manutwr" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/saksham-tiwari-3b4000403" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://codolio.com/profile/manutwr" target="_blank" aria-label="Codolio"><i class="fa-solid fa-code"></i></a>
+        <a href="mailto:sakshamtiwari.engg@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Designed & Developed with <span class="heart">❤️</span> by <strong>Saksham Tiwari</strong></p>
+        <p>&copy; 2026 Saksham Tiwari. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back To Top Floating Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
