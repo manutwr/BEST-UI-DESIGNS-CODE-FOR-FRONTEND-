@@ -1,4 +1,3 @@
-
 /**
  * Saksham Tiwari Portfolio - Master Script
  * Handles custom cursors, preloader, typing effect, scroll animations,
@@ -219,26 +218,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* --------------------------------------------------
-   * 9. Contact Form Interactive Handler
-   * -------------------------------------------------- */
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
+ /* --------------------------------------------------
+ * 9. Contact Form Interactive Handler (Web3Forms API)
+ * -------------------------------------------------- */
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (formStatus) {
       formStatus.textContent = "Sending message...";
       formStatus.className = "form-status";
+    }
 
-      setTimeout(() => {
-        formStatus.textContent = "Thank you! Your message has been sent successfully.";
-        formStatus.className = "form-status success";
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        if (formStatus) {
+          formStatus.textContent = "Thank you! Your message has been sent successfully!";
+          formStatus.className = "form-status success";
+        }
         contactForm.reset();
-      }, 1500);
-    });
-  }
+      } else {
+        if (formStatus) {
+          formStatus.textContent = data.message || "Something went wrong!";
+          formStatus.className = "form-status error";
+        }
+      }
+    } catch (error) {
+      if (formStatus) {
+        formStatus.textContent = "Network error. Please check your connection.";
+        formStatus.className = "form-status error";
+      }
+    }
+  });
+}
 });
 /* ==========================================
    MAGNETIC BUTTON EFFECT (Button moves with cursor)
