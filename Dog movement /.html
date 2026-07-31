@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Following Dog</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: #181824;
+      overflow: hidden;
+      cursor: crosshair;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .info-text {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #94a3b8;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Dog Container Base */
+    #dog-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 90px;
+      height: 70px;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .dog-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Idle Animations */
+    .tail {
+      transform-origin: 18px 38px;
+      animation: wagSlow 0.8s infinite alternate ease-in-out;
+    }
+
+    /* Running Animations */
+    .running .tail {
+      animation: wagFast 0.18s infinite alternate ease-in-out;
+    }
+
+    .leg {
+      transform-origin: top center;
+    }
+
+    .running .leg-f1 { animation: runLeg 0.25s infinite alternate ease-in-out; }
+    .running .leg-f2 { animation: runLeg 0.25s infinite alternate ease-in-out 0.12s; }
+    .running .leg-b1 { animation: runLeg 0.25s infinite alternate ease-in-out 0.12s; }
+    .running .leg-b2 { animation: runLeg 0.25s infinite alternate ease-in-out; }
+
+    .running .body-group {
+      animation: bounce 0.12s infinite alternate ease-in-out;
+    }
+
+    /* Keyframes */
+    @keyframes wagSlow {
+      0% { transform: rotate(-8deg); }
+      100% { transform: rotate(18deg); }
+    }
+
+    @keyframes wagFast {
+      0% { transform: rotate(-25deg); }
+      100% { transform: rotate(30deg); }
+    }
+
+    @keyframes runLeg {
+      0% { transform: rotate(-35deg); }
+      100% { transform: rotate(35deg); }
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="info-text">
+    Cursor ko move karein — Dog peecha karega! 🐕
+  </div>
+
+  <div id="dog-container">
+    <svg class="dog-svg" viewBox="0 0 100 80">
+      <g class="body-group">
+        <!-- Tail -->
+        <path class="tail" d="M 22 40 Q 8 22 12 12" stroke="#d97736" stroke-width="6" stroke-linecap="round" fill="none"/>
+        
+        <!-- Back Legs (Darker shade) -->
+        <line class="leg leg-b2" x1="32" y1="50" x2="26" y2="70" stroke="#b55c23" stroke-width="6" stroke-linecap="round" />
+        <line class="leg leg-f2" x1="68" y1="50" x2="74" y2="70" stroke="#b55c23" stroke-width="6" stroke-linecap="round" />
+
+        <!-- Main Body -->
+        <ellipse cx="50" cy="42" rx="28" ry="17" fill="#e88741" />
+
+        <!-- Front Legs -->
+        <line class="leg leg-b1" x1="36" y1="50" x2="30" y2="72" stroke="#e88741" stroke-width="6" stroke-linecap="round" />
+        <line class="leg leg-f1" x1="64" y1="50" x2="70" y2="72" stroke="#e88741" stroke-width="6" stroke-linecap="round" />
+
+        <!-- Head -->
+        <g class="head">
+          <circle cx="74" cy="30" r="15" fill="#e88741" />
+          <!-- Snout -->
+          <ellipse cx="85" cy="33" rx="8" ry="6" fill="#fce3c7" />
+          <!-- Nose -->
+          <circle cx="91" cy="31" r="3" fill="#2c1810" />
+          <!-- Ear -->
+          <path d="M 66 20 Q 58 8 68 4 Q 74 10 71 22 Z" fill="#b55c23" />
+          <!-- Eye -->
+          <circle cx="79" cy="26" r="2.5" fill="#2c1810" />
+          <circle cx="80" cy="25" r="0.8" fill="#ffffff" />
+          <!-- Tongue -->
+          <path class="tongue" d="M 85 37 Q 88 44 83 45" stroke="#ff6b81" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    const dog = document.getElementById('dog-container');
+    
+    // Target position (Cursor)
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+
+    // Dog position
+    let dogX = targetX;
+    let dogY = targetY;
+
+    // Direction tracker
+    let facingRight = true;
+
+    // Mouse track
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    // Touch track (Mobile support)
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        targetX = e.touches[0].clientX;
+        targetY = e.touches[0].clientY;
+      }
+    });
+
+    function animate() {
+      // Distance calculation
+      const dx = targetX - dogX;
+      const dy = targetY - dogY;
+      const distance = Math.hypot(dx, dy);
+
+      // Lerp (Speed factor: 0.08 = ultra smooth, higher = faster chase)
+      const speed = 0.08;
+      
+      if (distance > 18) {
+        dogX += dx * speed;
+        dogY += dy * speed;
+        
+        dog.classList.add('running');
+
+        // Turn left/right based on X offset
+        if (dx < -5 && facingRight) {
+          facingRight = false;
+        } else if (dx > 5 && !facingRight) {
+          facingRight = true;
+        }
+      } else {
+        dog.classList.remove('running');
+      }
+
+      // Dynamic vertical tilt on movement
+      const tilt = Math.max(-20, Math.min(20, dy * 0.12));
+      
+      // Transform logic
+      const scaleX = facingRight ? 1 : -1;
+      const offsetX = facingRight ? -45 : 45;
+      const offsetY = -35;
+
+      dog.style.transform = `translate3d(${dogX + offsetX}px, ${dogY + offsetY}px, 0) scaleX(${scaleX}) rotate(${facingRight ? tilt : -tilt}deg)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
