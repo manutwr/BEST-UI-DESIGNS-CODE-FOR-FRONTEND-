@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Cursor Effect</title>
+  <style>
+    /* Hide default system cursor */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none; 
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #312e81, #581c87);
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* Vibrant background elements to reveal the frosted glass blur */
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: 1;
+    }
+    .blob-1 {
+      width: 320px;
+      height: 320px;
+      background: #f43f5e;
+      top: 20%;
+      left: 20%;
+    }
+    .blob-2 {
+      width: 280px;
+      height: 280px;
+      background: #06b6d4;
+      bottom: 20%;
+      right: 25%;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+    }
+
+    .interactive-btn {
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      transition: background 0.3s ease;
+    }
+
+    /* GLASS CURSOR STYLES */
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none; /* Prevents blocking clicks underneath */
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-glass {
+      width: 60px;
+      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none; /* Critical for clicking elements */
+      z-index: 9998;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      
+      /* Glassmorphism styling */
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 
+        0 8px 32px 0 rgba(0, 0, 0, 0.3),
+        inset 0 0 12px 0 rgba(255, 255, 255, 0.2);
+      
+      /* Smooth size expansion when hovering */
+      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    }
+
+    /* Active state trigger on hover */
+    .cursor-glass.active {
+      width: 90px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative shapes for glass blur reflection -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
+  <!-- Page Content -->
+  <div class="container">
+    <h1>Frosted Glass Cursor</h1>
+    <p>Move your mouse around to see real-time backdrop blur distortion.</p>
+    <button class="interactive-btn">Hover Over Me</button>
+  </div>
+
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-dot" id="dot"></div>
+  <div class="cursor-glass" id="glass"></div>
+
+  <script>
+    const dot = document.getElementById('dot');
+    const glass = document.getElementById('glass');
+
+    let mouseX = 0, mouseY = 0;
+    let glassX = 0, glassY = 0;
+
+    // Track cursor coordinates
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Update inner dot immediately
+      dot.style.left = `${mouseX}px`;
+      dot.style.top = `${mouseY}px`;
+    });
+
+    // Linear Interpolation (LERP) for smooth outer ring lag
+    function lerp(start, end, factor) {
+      return start + (end - start) * factor;
+    }
+
+    // Animation Loop
+    function animate() {
+      // 0.15 controls lag smoothness (lower = slower lag)
+      glassX = lerp(glassX, mouseX, 0.15);
+      glassY = lerp(glassY, mouseY, 0.15);
+
+      glass.style.left = `${glassX}px`;
+      glass.style.top = `${glassY}px`;
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Scale up glass cursor when hovering interactive items
+    const targets = document.querySelectorAll('.interactive-btn, a, button');
+    targets.forEach((target) => {
+      target.addEventListener('mouseenter', () => glass.classList.add('active'));
+      target.addEventListener('mouseleave', () => glass.classList.remove('active'));
+    });
+  </script>
+</body>
+</html>
